@@ -3,62 +3,71 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link type="text/css" rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link type="text/css" rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon/planet_meta_favicon.png">
     <script src="./js/libs/anime/anime.min.js"></script>
-
+    <script src="./js/libs/gsap/gsap.min.js"></script>
+    <script src="./js/libs/gsap/ScrollTrigger.min.js"></script>
+    <script src="./js/libs/gsap/ScrollToPlugin.min.js"></script>
     <title>Planet Meta Beta</title>
 </head>
+<audio id='audio' autoplay loop>
+    <source src="" type="audio/wav"></audio>
 <div class='navContainer' id="navContainer">
     <nav class="navbar">
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+
+        <button class="avtBtn fade-in" type="button" id="avtButton">CLOUD</button>
+        <button class="avtBtn fade-in" type="button" id="avtButton">AI</button>
+        <button class="avtBtn fade-in" type="button" id="avtButton">COOKIE</button>
+        <!-- <label class='avtBtn fade-in'><span class="navicon">COOKIE</span></label> -->
         <ul>
-            <li><a href=" " id="close" class="nav" title="close">&#10005</a></li>
+
+            <li><a href="" id="close" class="nav" title="close">Back</a></li>
             <li><a href="#allavatar" id="avatar" class="nav" title="avatar">All avatars</a></li>
             <li><a href="#metaphors" id="metaphor" class="nav" title="metaphor">Metaphors</a></li>
             <li><a href="#about" id="about" class="nav" title="about">About</a></li>
             <!-- <li><a href="#" id="mode" title="mode">Day Mode</a></li> -->
         </ul>
+
     </nav>
 </div>
-<a id='return' class='return fade-in'>GO BACK</a>
+<a id='return' class='return fade-in container'>GO BACK</a>
 <div class='modeBtnDiv'>
     <div class="header">
-        <input type="checkbox" id='modeBtn' class='modeBtn fade-in'>
+        <!-- <label for="modeBtn">mode</label> -->
+        <input name='modeBtn' type="checkbox" id='modeBtn' class='fa fa-moon-o modeBtn fade-in' style="font-size:20px;color:black">
+        <!-- <label for="audioBtn">audio</label> -->
+        <input name='audioBtn' type="checkbox" id='audioBtn' class='fa fa-volume-up audioBtn fade-in' style="font-size:20px;color:black">
     </div>
 </div>
 
 <body>
-    <div id='canvas' class="fade-in">
+    <div id='canvas' class=" canvas fade-in">
         <div class='lp fade-in' id='lp'>
             <h2>ENTER THE META/
                 <div id='replacingTo'>PHOR</div>
             </h2>
         </div>
-        <h1 class="title fade-in" id='title'>planet meta/</h1>
+        <h1 class="title defaultTitle fade-in" id='title'>planet meta/</h1>
+        <img alt="image" class="avatarImg fade-in" id='avatarImg' src=''>
+        <img alt="image" class="planetImg fade-in" id='planetImg' src=''>
         <div class="paragraphDiv fade-in" id="paragraphDiv">
             <h2 class="planetTitle fade-in" id="planetTitle">
             </h2>
-            <img alt="image" class="avatar_diagram" id="avatar_diagram">
+            <img alt="image" class="avatar_diagram" id="avatar_diagram" src=''>
+            <!-- <p class="read-more"><a href="#" class="button">Scroll</a></p> -->
+
+            <!-- <a class='paragraphScroll'><span></span>Scroll</a> -->
+            <div id="scrollBtn" class='paragraphScroll'></div>
+        </div>
+        <div class='bgWrapper'>
+            <img class="avtBgImg fade-in" id="avtBgImg">
         </div>
         <script type="module" src="./js/menu.js"></script>
-
-
-        <!-- <video class="vidContainer avatarImg" id="vidContainer leftImg" width="100%" height="100%">
-            <source 
-              src="./assets/img/vid/cloud_1.webm" 
-              type="video/webm" autoplay loop muted playsinline>
-          </video>
-        <video class="vidContainer avatarImg" id="vidContainer centerImg" width="100%" height="100%" autoplay loop muted playsinline>
-            <source 
-              src="./assets/img/vid/ai_1.webm" 
-              type="video/webm">
-          </video>
-        <video class="vidContainer avatarImg" id="vidContainer rightImg" width="100%" height="100%" autoplay loop muted playsinline>
-            <source 
-              src="./assets/img/vid/cookie_1.webm" 
-              type="video/webm">
-          </video> -->
-
 
 
         <div id="diagram" class="diagram fade-in">
@@ -71,270 +80,522 @@
                 <h2 class="abstractConcepts">abstract concepts</h2>
                 <h2 class="concreteConcepts">concrete concepts</h2>
             </div>
-        </div>
-        <!-- <button class="openbtn" onclick="openNav()"><</button> -->
 
-        <script>
-            var landingPageBtn = document.getElementById("lp");
-            var navSection = document.getElementsByClassName("nav");
-            var topTitle = document.getElementById("title");
-            var closeBtn = document.getElementById("close");
-            var avatarBtn = document.getElementById("avatar");
-            var metaphorBtn = document.getElementById("metaphor");
-            var aboutBtn = document.getElementById("about");
-            var modeBtn = document.getElementById("modeBtn");
-            var returnBtn = document.getElementById("return");
-            var video = document.getElementById("vidContainer");
-            var paragraphDiv = document.getElementById("paragraphDiv");
-            var planetTitle = document.getElementById("planetTitle");
-            var avatarDiagramImg = document.getElementById("avatar_diagram");
-            var diagram = document.getElementById("diagram");
-            let pressedBtn, currentDom;
-            var body = document.body;
-            let canvas;
-            currentDom = body.childNodes;
+            <!-- <div class="planDeTravelWrapper" id="planDeTravelWrapper">
+                <img class="planDeTravelDiagram" id="planDeTravelDiagram" src='./assets/img/svg/svg_anim/1.svg' />
+            </div> -->
 
-            var replaceTo = ["DATA", "VERSE", "MORPHOSIS"];
-
-            var sentence = landingPageBtn.querySelector('h2').textContent;
-
-            function replaceSentence() {
-                var r = Math.floor(Math.random() * 4);
-                replaceTo.push("PHOR");
-                var newText = sentence.replace(sentence.split('/')[1], replaceTo[r]);
-                // console.log(sentence.split('/')[1]);
-                sentence = newText;
-                landingPageBtn.querySelector('h2').innerText = newText;
-            }
-
-
-            landingPageBtn.addEventListener("mouseenter", function(event) {
-                anime.timeline({
-                        loop: false
-                    })
-                    .add({
-                        targets: '.lp h2 div',
-                        opacity: [0, 1],
-                        easing: "easeOutExpo",
-                        duration: 400,
-                        offset: '-=775',
-                        delay: (el, i) => 34 * (i + 1)
-                    });
-
-                replaceSentence();
-            }, false);
-
-
-            closeBtn.addEventListener("click", () => {
-                    // console.log(currentDom);
-                    canvas = document.getElementById('canvas');
-                    canvas.remove();
-                    var newCanvas = document.createElement('div');
-                    newCanvas.setAttribute('id', 'canvas');
-                },
-                false);
+            <table class="bigDiagramRow" id="bigDiagramRow">
+                <tr class="bigDiagramColumn" id="columnCookie">
+                    <th>Cookie</th>
+                    <td>
+                        <hr class='cookieLine'>
+                    </td>
+                    <td class="cookieIcon" id="cookieIcon"><img src='./assets/img/svg/cookie.svg' /></td>
+                </tr>
+                <tr class="bigDiagramColumn" id="columnVirus">
+                    <th>Virus</th>
+                    <td>
+                        <hr class='virusLine'>
+                    </td>
+                    <td class="virusIcon" id="virusIcon"><img src='./assets/img/svg/virus.svg' />
+                    </td>
+                </tr>
+                <tr class="bigDiagramColumn" id="columnCloud">
+                    <th>Cloud</th>
+                    <td>
+                        <hr class='cloudLine'>
+                    </td>
+                    <td class="cloudIcon" id="cloudIcon"><img src='./assets/img/svg/cloud.svg' />
+                    </td>
+                </tr>
+                <tr class="bigDiagramColumn" id="columnWeb">
+                    <th>Web</th>
+                    <td>
+                        <hr class='webLine'>
+                    </td>
+                    <td class="webIcon" id="webIcon"><img src='./assets/img/svg/web.svg' />
+                    </td>
+                </tr>
+                <tr class="bigDiagramColumn" id="columnArtificialIntelligence">
+                    <th>AI</th>
+                    <td>
+                        <hr class='aiLine'>
+                    </td>
+                    <td class="aiIcon" id="aiIcon"><img src='./assets/img/svg/AI.svg' />
+                    </td>
+                </tr>
+            </table>
 
 
 
-            avatarBtn.addEventListener("click", () => {
-                    // console.log(currentDom);
-                    canvas = document.getElementById('canvas');
-                    canvas.remove();
-                    // modeBtn.checked = false;
-                    modeBtn.remove();
-                    // video.style.display = "block";
-                    // navSection.style.color = '#fff';
-                    var newCanvas = document.createElement('div');
-                    newCanvas.setAttribute('id', 'canvas');
-                    body.appendChild(newCanvas);
+            <script>
+                var landingPageBtn = document.getElementById("lp")
+                var audio = document.getElementById('audio');
+                var title = document.getElementById("title");
+                var navSection = document.getElementsByClassName("nav");
+                var navBar = document.querySelector(".navContainer nav.navbar");
+                var hiddenNavItems = document.getElementsByClassName("avtBtn");
+                var topTitle = document.getElementById("title");
+                var closeBtn = document.getElementById("close");
+                var avatarBtn = document.getElementById("avatar");
+                var metaphorBtn = document.getElementById("metaphor");
+                var aboutBtn = document.getElementById("about");
+                var modeBtn = document.getElementById("modeBtn");
+                var audioBtn = document.getElementById("audioBtn");
+                var returnBtn = document.getElementById("return");
+                var video = document.getElementById("vidContainer");
+                var avatarImg = document.getElementById("avatarImg");
+                var planetImg = document.getElementById("planetImg");
+                var paragraphDiv = document.getElementById("paragraphDiv");
+                var planetTitle = document.getElementById("planetTitle");
+                var avatarDiagramImg = document.getElementById("avatar_diagram");
+                var scrollBtnContainer = document.getElementById("scrollBtn");
+                var avatarBgImg = document.getElementById("avtBgImg");
+                var diagram = document.getElementById("diagram");
+                var planDeTravelWrapper = document.getElementById("planDeTravelWrapper");
+                var bigDiagramRow = document.getElementById("bigDiagramRow");
+                let pressedBtn, currentDom;
+                var body = document.body;
+                let canvas;
+                currentDom = body.childNodes;
+
+                var replaceTo = ["DATA", "VERSE", "MORPHOSIS"];
+
+                var sentence = landingPageBtn.querySelector('h2').textContent;
+                title.style.display = 'none';
+
+                function replaceSentence() {
+                    var r = Math.floor(Math.random() * 4);
+                    replaceTo.push("PHOR");
+                    var newText = sentence.replace(sentence.split('/')[1], replaceTo[r]);
+                    sentence = newText;
+                    landingPageBtn.querySelector('h2').innerText = newText;
+                }
+
+                if (window.matchMedia("(max-width: 768px)").matches) {
+
+                    window.setInterval(function() {
+                        var r = Math.floor(Math.random() * 4);
+                        replaceTo.push("PHOR");
+                        var newText = sentence.replace(sentence.split('/')[1], replaceTo[r]);
+                        sentence = newText;
+                        landingPageBtn.querySelector('h2').innerText = newText;
+                    }, 3800);
+
+                };
+
+                landingPageBtn.addEventListener("mouseenter", function(event) {
+                    anime.timeline({
+                            loop: false
+                        })
+                        .add({
+                            targets: '.lp h2 div',
+                            opacity: [0, 1],
+                            easing: "easeOutExpo",
+                            duration: 400,
+                            offset: '-=775',
+                            delay: (el, i) => 34 * (i + 1)
+                        });
+
+                    replaceSentence();
+                }, false);
+
+                var menuBtn = document.getElementById("menu-btn");
+
+                menuBtn.addEventListener("click", () => {
+                    if (menuBtn.checked) {
+                        for (var i = 0; i < 4; i++) {
+                            navSection[i].style.display = "block";
+                            // document.querySelector(".navbar li").style.width = "100%";
+                        }
+                    } else {
+                        for (var i = 0; i < 4; i++) {
+                            navSection[i].style.display = "none";
+                        }
+                    }
+                }, false);
+
+                const button = document.querySelector('#avtButton');
+                button.addEventListener('click', () => {
+                    console.log('clicked');
+
+
+                });
 
 
 
-                    var vid = document.getElementsByClassName("avatarImg");
-                    const vid_src_cloud = ["./assets/img/vid/cloud_1.webm", "./assets/img/vid/cloud_2.webm"];
-                    const vid_src_ai = ["./assets/img/vid/ai_1.webm", "./assets/img/vid/ai_2.webm"];
-                    const vid_src_cookie = ["./assets/img/vid/cookie_1.webm", "./assets/img/vid/cookie_2.webm"];
 
-                    var bgLayerLeft = document.createElement('div');
-                    bgLayerLeft.setAttribute('class', 'bgLayerLeft');
-                    bgLayerLeft.setAttribute('id', 'bgLayerLeft left');
-                    newCanvas.appendChild(bgLayerLeft);
+                closeBtn.addEventListener("click", () => {
+                        title.style.display = 'none';
+                        document.location.reload(true);
+                    },
+                    false);
 
-                    var splitLayerLeft = document.createElement('video');
-                    splitLayerLeft.setAttribute('class', 'vidContainer avatarImg');
-                    splitLayerLeft.setAttribute('id', 'vidContainer leftImg');
-                    splitLayerLeft.setAttribute('src', vid_src_cloud[0]);
-                    splitLayerLeft.setAttribute('loop', 'loop');
-                    splitLayerLeft.setAttribute('autoplay', 'autoplay');
-                    splitLayerLeft.setAttribute('muted', 'muted');
-                    bgLayerLeft.appendChild(splitLayerLeft);
-                    var cloudToggle = document.createElement('input');
-                    cloudToggle.setAttribute('class', 'avtTgl fade-in');
-                    cloudToggle.setAttribute('id', 'cloudToggle');
-                    cloudToggle.setAttribute('type', 'checkbox');
-                    newCanvas.appendChild(cloudToggle);
-                    cloudToggle.addEventListener("click", () => {
-                        var currentlyPlaying = 1;
-                        if (cloudToggle.checked == true && currentlyPlaying === 1) {
-                            splitLayerLeft.src = vid_src_cloud[1];
-                            currentlyPlaying = 2;
-                            bgLayerLeft.classList.add('fade-in');
-                            bgLayerLeft.style.background = '#353535';
-                            splitBtnLeft.style.background = '#535353';
-                            splitBtnLeft.style.color = 'white';
-                        } else {
-                            splitLayerLeft.src = vid_src_cloud[0];
-                            console.log(vid.src);
-                            currentlyPlaying = 1;
-                            bgLayerLeft.style.background = '#FFFFFF';
-                            splitBtnLeft.style.background = '#EFEFEF';
+
+
+
+                avatarBtn.addEventListener("click", () => {
+
+                        audio.mute = true;
+                        for (var i = 0; i < 4; i++) {
+                            navSection[i].style.background = '#F5F2F5';
+                            navSection[i].style.color = '#333';
+                        }
+                        returnBtn.style.display = 'none';
+                        canvas = document.getElementById('canvas');
+                        canvas.remove();
+                        // modeBtn.checked = false;
+                        modeBtn.remove();
+                        audioBtn.remove();
+                        // video.style.display = "block ";
+                        // navSection.style.color = '#fff';
+                        if (window.matchMedia("(max-width: 768px)").matches) {
+                            for (var i = 0; i < 3; i++) {
+                                hiddenNavItems[i].style.display = 'inline-block';
+                            }
+                        }
+
+                        var newCanvas = document.createElement('div');
+                        newCanvas.setAttribute('id', 'canvas');
+                        body.appendChild(newCanvas);
+
+                        var vid = document.getElementsByClassName("avatarVid");
+                        const vid_src_cloud = ["./assets/img/vid/cloud_01.webm", "./assets/img/vid/cloud_02.webm"];
+                        const vid_src_ai = ["./assets/img/vid/ai_01.webm", "./assets/img/vid/ai_02.webm"];
+                        const vid_src_cookie = ["./assets/img/vid/cookie_01.webm", "./assets/img/vid/cookie_02.webm"];
+
+                        var bgLayerLeft = document.createElement('div');
+                        bgLayerLeft.setAttribute('class', 'bgLayerLeft');
+                        bgLayerLeft.setAttribute('id', 'bgLayerLeft left');
+                        newCanvas.appendChild(bgLayerLeft);
+
+                        var splitLayerLeft = document.createElement('video');
+                        splitLayerLeft.setAttribute('class', 'avatarVid');
+                        splitLayerLeft.setAttribute('id', 'leftImg');
+                        splitLayerLeft.setAttribute('src', vid_src_cloud[0]);
+                        splitLayerLeft.setAttribute('loop', 'loop');
+                        splitLayerLeft.setAttribute('autoplay', 'autoplay');
+                        splitLayerLeft.setAttribute('muted', 'muted');
+                        bgLayerLeft.appendChild(splitLayerLeft);
+
+                        var cloudToggle = document.createElement('input');
+                        cloudToggle.setAttribute('class', 'avtTgl fa fa-moon-o fade-in');
+                        cloudToggle.setAttribute('id', 'cloudToggle');
+                        cloudToggle.setAttribute('type', 'checkbox');
+                        newCanvas.appendChild(cloudToggle);
+                        cloudToggle.addEventListener("click", () => {
+                            var currentlyPlaying = 1;
+                            if (cloudToggle.checked && currentlyPlaying === 1) {
+                                splitLayerLeft.src = vid_src_cloud[1];
+                                currentlyPlaying = 2;
+                                cloudToggle.classList.add('fa-sun-o');
+                                cloudToggle.classList.remove('fa-moon-o');
+                                bgLayerLeft.classList.add('fade-in');
+                                bgLayerLeft.style.background = '#353535';
+                                splitBtnLeft.style.color = '#FFFFFF';
+                                navBar.style.background = '#353535';
+                                document.querySelector('#left.overlay.closed').style.background = '#353535';
+
+                            } else {
+                                splitLayerLeft.src = vid_src_cloud[0];
+                                currentlyPlaying = 1;
+                                cloudToggle.classList.add('fa-moon-o');
+                                cloudToggle.classList.remove('fa-sun-o');
+                                bgLayerLeft.style.background = '#F5F2F5';
+                                splitBtnLeft.style.color = '#000000';
+                                navBar.style.background = '#F5F2F5';
+                                document.querySelector('#left.overlay.closed').style.background = '#F5F2F5';
+
+                            }
+                            splitLayerLeft.load();
+                        });
+
+
+                        var bgLayerCenter = document.createElement('div');
+                        bgLayerCenter.setAttribute('class', 'bgLayerCenter');
+                        bgLayerCenter.setAttribute('id', 'bgLayerCenter center');
+                        newCanvas.appendChild(bgLayerCenter);
+
+                        var splitLayerCenter = document.createElement('video');
+                        splitLayerCenter.setAttribute('class', 'avatarVid');
+                        splitLayerCenter.setAttribute('id', 'centerImg');
+                        splitLayerCenter.setAttribute('src', vid_src_ai[0]);
+                        splitLayerCenter.setAttribute('loop', 'loop');
+                        splitLayerCenter.setAttribute('autoplay', 'autoplay');
+                        splitLayerCenter.setAttribute('muted', 'muted');
+                        bgLayerCenter.appendChild(splitLayerCenter);
+
+                        var aiToggle = document.createElement('input');
+                        aiToggle.setAttribute('class', 'avtTgl fa fa-moon-o fade-in');
+                        aiToggle.setAttribute('id', 'aiToggle');
+                        aiToggle.setAttribute('type', 'checkbox');
+                        newCanvas.appendChild(aiToggle);
+                        aiToggle.addEventListener("click", () => {
+                            var currentlyPlaying = 1;
+                            if (aiToggle.checked && currentlyPlaying === 1) {
+                                splitLayerCenter.src = vid_src_ai[1];
+                                currentlyPlaying = 2;
+                                aiToggle.classList.add('fa-sun-o');
+                                aiToggle.classList.remove('fa-moon-o');
+                                bgLayerCenter.classList.add('fade-in');
+                                bgLayerCenter.style.background = '#353535';
+                                splitBtnCenter.style.color = '#FFFFFF';
+                                navBar.style.background = '#353535';
+                                document.querySelector('#center.overlay.closed').style.background = '#353535';
+
+
+                            } else {
+                                splitLayerCenter.src = vid_src_ai[0];
+                                currentlyPlaying = 1;
+                                aiToggle.classList.add('fa-moon-o');
+                                aiToggle.classList.remove('fa-sun-o');
+
+                                bgLayerCenter.style.background = '#F5F2F5';
+                                splitBtnCenter.style.color = '#000000';
+                                navBar.style.background = '#F5F2F5';
+                                document.querySelector('#center.overlay.closed').style.background = '#F5F2F5';
+
+
+                            }
+                            splitLayerCenter.load();
+                        });
+
+
+                        var bgLayerRight = document.createElement('div');
+                        bgLayerRight.setAttribute('class', 'bgLayerRight');
+                        bgLayerRight.setAttribute('id', 'bgLayerRight right');
+                        newCanvas.appendChild(bgLayerRight);
+
+
+                        var splitLayerRight = document.createElement('video');
+                        splitLayerRight.setAttribute('class', 'avatarVid');
+                        splitLayerRight.setAttribute('id', 'rightImg');
+
+                        splitLayerRight.setAttribute('src', vid_src_cookie[0]);
+                        splitLayerRight.setAttribute('loop', 'loop');
+                        splitLayerRight.setAttribute('autoplay', 'autoplay');
+                        splitLayerRight.setAttribute('muted', 'muted');
+                        newCanvas.appendChild(splitLayerRight);
+
+                        var cookieToggle = document.createElement('input');
+                        cookieToggle.setAttribute('class', 'avtTgl fa fa-moon-o fade-in');
+                        cookieToggle.setAttribute('id', 'cookieToggle');
+                        cookieToggle.setAttribute('type', 'checkbox');
+                        newCanvas.appendChild(cookieToggle);
+                        cookieToggle.addEventListener("click", () => {
+                            var currentlyPlaying = 1;
+                            if (cookieToggle.checked && currentlyPlaying === 1) {
+                                splitLayerRight.src = vid_src_cookie[1];
+                                currentlyPlaying = 2;
+                                cookieToggle.classList.add('fa-sun-o');
+                                cookieToggle.classList.remove('fa-moon-o');
+                                bgLayerRight.classList.add('fade-in');
+                                bgLayerRight.style.background = '#353535';
+                                splitBtnRight.style.color = '#FFFFFF';
+                                navBar.style.background = '#353535';
+                                document.querySelector('#right.overlay.closed').style.background = '#353535';
+
+
+
+                            } else {
+                                splitLayerRight.src = vid_src_cookie[0];
+                                currentlyPlaying = 1;
+                                cookieToggle.classList.add('fa-moon-o');
+                                cookieToggle.classList.remove('fa-sun-o');
+
+                                bgLayerRight.style.background = '#F5F2F5';
+                                splitBtnRight.style.color = '#000000';
+                                navBar.style.background = '#F5F2F5';
+                                document.querySelector('#right.overlay.closed').style.background = '#F5F2F5';
+
+
+                            }
+                            splitLayerRight.load();
+
+                        });
+
+                        var splitBtnLeft = document.createElement('div');
+                        splitBtnLeft.setAttribute('class', 'overlay');
+                        splitBtnLeft.setAttribute('id', 'left');
+                        splitBtnLeft.innerHTML = '<h2>CLOUD</h2>';
+                        splitBtnLeft.addEventListener("click", () => {
+                            splitBtnLeft.classList.toggle('closed');
+                        });
+                        newCanvas.appendChild(splitBtnLeft);
+                        var splitBtnCenter = document.createElement('div');
+                        splitBtnCenter.setAttribute('class', 'overlay');
+                        splitBtnCenter.setAttribute('id', 'center');
+                        splitBtnCenter.innerHTML = '<h2>AI</h2>';
+                        splitBtnCenter.addEventListener("click", () => {
+                            splitBtnCenter.classList.toggle('closed');
+                        });
+                        newCanvas.appendChild(splitBtnCenter);
+                        var splitBtnRight = document.createElement('div');
+                        splitBtnRight.innerHTML = '<h2>COOKIE</h2>';
+                        splitBtnRight.setAttribute('class', 'overlay');
+                        splitBtnRight.setAttribute('id', 'right');
+                        splitBtnRight.addEventListener("click", () => {
+                            splitBtnRight.classList.toggle('closed');
+                        });
+                        newCanvas.appendChild(splitBtnRight);
+
+
+                        var mobileToggle = document.createElement('input');
+                        mobileToggle.setAttribute('class', 'avtTgl fa fa-moon-o fade-in');
+                        mobileToggle.setAttribute('id', 'mobileToggle');
+                        mobileToggle.setAttribute('type', 'checkbox');
+                        newCanvas.appendChild(mobileToggle);
+                        var currentAvt;
+                        hiddenNavItems[0].onclick = function() {
+                            document.querySelector(".overlay h2").textContent = "CLOUD";
+
+                            splitLayerLeft.src = vid_src_cloud[0]
+                            currentAvt = 0;
+                            bgLayerLeft.style.background = '#F5F2F5';
+                            splitBtnLeft.style.background = 'none';
+                            navBar.style.background = '#F5F2F5';
+                        };
+
+                        hiddenNavItems[1].onclick = function() {
+                            document.querySelector(".overlay h2").textContent = "AI";
+
+                            splitLayerLeft.src = vid_src_ai[0];
+                            currentAvt = 1;
+                            bgLayerLeft.style.background = '#F5F2F5';
+                            splitBtnLeft.style.background = 'none';
+                            navBar.style.background = '#F5F2F5';
+
+
+
+
+                        };
+                        hiddenNavItems[2].onclick = function() {
+                            document.querySelector(".overlay h2").textContent = "COOKIE";
+                            splitLayerLeft.src = vid_src_cookie[0];
+                            currentAvt = 2;
+                            bgLayerLeft.style.background = '#F5F2F5';
+                            splitBtnLeft.style.background = 'none';
                             splitBtnLeft.style.color = 'black';
-                        }
-                        splitLayerLeft.load();
+                            navBar.style.background = '#F5F2F5';
+                            for (var i = 0; i < 3; i++) {
+                                hiddenNavItems[i].style.color = 'black';
+                            };
 
+
+                        };
+
+                        mobileToggle.addEventListener("click", () => {
+                            if (mobileToggle.checked) {
+                                mobileToggle.classList.add('fa-sun-o');
+                                mobileToggle.classList.remove('fa-moon-o');
+                                bgLayerLeft.style.background = '#353535';
+                                splitBtnLeft.style.background = 'none';
+                                splitBtnLeft.style.color = 'white';
+                                navBar.style.background = '#353535';
+                                for (var i = 0; i < 3; i++) {
+                                    hiddenNavItems[i].style.color = 'white';
+                                }
+                                for (var i = 0; i < 4; i++) {
+                                    navSection[i].style.background = '#353535';
+                                    navSection[i].style.color = 'white';
+                                }
+                                switch (currentAvt) {
+                                    case 0: //cloud
+                                        splitLayerLeft.src = vid_src_cloud[1];
+                                        break;
+                                    case 1: //ai
+                                        splitLayerLeft.src = vid_src_ai[1];
+                                        break;
+                                    case 2: //cookie
+                                        splitLayerLeft.src = vid_src_cookie[1];
+                                        break;
+                                    default:
+                                        splitLayerLeft.src = vid_src_cloud[1];
+                                        break;
+                                }
+                            } else {
+                                mobileToggle.classList.remove('fa-sun-o');
+                                mobileToggle.classList.add('fa-moon-o');
+                                bgLayerLeft.style.background = '#F5F2F5';
+                                splitBtnLeft.style.background = 'none';
+                                splitBtnLeft.style.color = 'black';
+                                navBar.style.background = '#F5F2F5';
+                                for (var i = 0; i < 3; i++) {
+                                    hiddenNavItems[i].style.color = 'black';
+                                };
+                                for (var i = 0; i < 4; i++) {
+                                    navSection[i].style.background = '#F5F2F5';
+                                    navSection[i].style.color = '#333';
+                                }
+                                switch (currentAvt) {
+                                    case 0: //cloud
+                                        splitLayerLeft.src = vid_src_cloud[0];
+                                        break;
+                                    case 1: //ai
+                                        splitLayerLeft.src = vid_src_ai[0];
+                                        break;
+                                    case 2: //cookie
+                                        splitLayerLeft.src = vid_src_cookie[0];
+                                        break;
+                                    default:
+                                        splitLayerLeft.src = vid_src_cloud[0];
+                                        break;
+                                }
+                            }
+
+                        });
+
+                    },
+                    false);
+
+
+                metaphorBtn.addEventListener("click", () => {
+                    title.style.display = 'flex';
+                    diagram.style.display = 'block';
+                    returnBtn.style.display = 'none';
+                    for (var i = 0; i < 3; i++) {
+                        hiddenNavItems[i].style.display = 'none';
+                    }
+                    navBar.style.background = '#F5F2F5';
+
+                    for (var i = 0; i < 4; i++) {
+                        navSection[i].style.background = '#F5F2F5';
+                        navSection[i].style.color = '#333';
+                    }
+
+
+
+                    gsap.registerPlugin(ScrollTrigger);
+                    ScrollTrigger.saveStyles(".mobile, .desktop");
+
+                    gsap.defaults({
+                        ease: "none",
+                        duration: 2
                     });
 
-
-
-                    var bgLayerCenter = document.createElement('div');
-                    bgLayerCenter.setAttribute('class', 'bgLayerCenter');
-                    bgLayerCenter.setAttribute('id', 'bgLayerCenter center');
-                    newCanvas.appendChild(bgLayerCenter);
-
-                    var splitLayerCenter = document.createElement('video');
-                    splitLayerCenter.setAttribute('class', 'avatarImg');
-                    splitLayerCenter.setAttribute('id', 'CenterImg');
-                    splitLayerCenter.setAttribute('src', vid_src_ai[0]);
-                    splitLayerCenter.setAttribute('loop', 'loop');
-                    splitLayerCenter.setAttribute('autoplay', 'autoplay');
-                    splitLayerCenter.setAttribute('muted', 'muted');
-                    bgLayerCenter.appendChild(splitLayerCenter);
-
-                    var aiToggle = document.createElement('input');
-                    aiToggle.setAttribute('class', 'avtTgl fade-in');
-                    aiToggle.setAttribute('id', 'aiToggle');
-                    aiToggle.setAttribute('type', 'checkbox');
-                    newCanvas.appendChild(aiToggle);
-                    aiToggle.addEventListener("click", () => {
-                        var currentlyPlaying = 1;
-                        if (aiToggle.checked == true && currentlyPlaying === 1) {
-                            splitLayerCenter.src = vid_src_ai[1];
-                            currentlyPlaying = 2;
-                            bgLayerCenter.classList.add('fade-in');
-                            bgLayerCenter.style.background = '#353535';
-                            splitBtnCenter.style.background = '#535353';
-                            splitBtnCenter.style.color = '#FFFFFF';
-                        } else {
-                            splitLayerCenter.src = vid_src_ai[0];
-                            currentlyPlaying = 1;
-                            bgLayerCenter.style.background = '#FFFFFF';
-                            splitBtnCenter.style.background = '#EFEFEF';
-                            splitBtnCenter.style.color = '#000000';
-                        }
-                        splitLayerCenter.load();
-                    });
-
-
-                    var bgLayerRight = document.createElement('div');
-                    bgLayerRight.setAttribute('class', 'bgLayerRight');
-                    bgLayerRight.setAttribute('id', 'bgLayerRight right');
-                    newCanvas.appendChild(bgLayerRight);
-
-
-                    var splitLayerRight = document.createElement('video');
-                    splitLayerRight.setAttribute('class', 'vidContainer avatarImg');
-                    splitLayerRight.setAttribute('id', 'rightImg');
-                    splitLayerRight.setAttribute('src', vid_src_cookie[0]);
-                    splitLayerRight.setAttribute('loop', 'loop');
-                    splitLayerRight.setAttribute('autoplay', 'autoplay');
-                    splitLayerRight.setAttribute('muted', 'muted');
-                    newCanvas.appendChild(splitLayerRight);
-
-                    var cookieToggle = document.createElement('input');
-                    cookieToggle.setAttribute('class', 'avtTgl fade-in');
-                    cookieToggle.setAttribute('id', 'cookieToggle');
-                    cookieToggle.setAttribute('type', 'checkbox');
-                    newCanvas.appendChild(cookieToggle);
-                    cookieToggle.addEventListener("click", () => {
-                        var currentlyPlaying = 1;
-                        if (cookieToggle.checked == true && currentlyPlaying === 1) {
-                            splitLayerRight.src = vid_src_cookie[1];
-                            currentlyPlaying = 2;
-                            bgLayerRight.classList.add('fade-in');
-                            bgLayerRight.style.background = '#353535';
-                            splitBtnRight.style.background = '#535353';
-                            splitBtnRight.style.color = '#FFFFFF';
-                        } else {
-                            splitLayerRight.src = vid_src_cookie[0];
-                            console.log(vid.src);
-
-                            currentlyPlaying = 1;
-                            bgLayerRight.style.background = '#FFFFFF';
-                            splitBtnRight.style.background = '#EFEFEF';
-                            splitBtnRight.style.color = '#000000';
-                        }
-                        splitLayerRight.load();
-
-                    });
-
-
-
-
-                    var splitBtnLeft = document.createElement('div');
-                    splitBtnLeft.setAttribute('class', 'overlay');
-                    splitBtnLeft.setAttribute('id', 'left');
-                    splitBtnLeft.innerHTML = '<h2>CLOUD</h2>';
-                    splitBtnLeft.addEventListener("click", () => {
-                        splitBtnLeft.classList.toggle('closed');
-                    });
-                    newCanvas.appendChild(splitBtnLeft);
-                    var splitBtnCenter = document.createElement('div');
-                    splitBtnCenter.setAttribute('class', 'overlay');
-                    splitBtnCenter.setAttribute('id', 'center');
-                    splitBtnCenter.innerHTML = '<h2>AI</h2>';
-                    splitBtnCenter.addEventListener("click", () => {
-                        splitBtnCenter.classList.toggle('closed');
-                    });
-                    newCanvas.appendChild(splitBtnCenter);
-                    var splitBtnRight = document.createElement('div');
-                    splitBtnRight.innerHTML = '<h2>COOKIE</h2>';
-                    splitBtnRight.setAttribute('class', 'overlay');
-                    splitBtnRight.setAttribute('id', 'right');
-                    splitBtnRight.addEventListener("click", () => {
-                        splitBtnRight.classList.toggle('closed');
-                    });
-                    newCanvas.appendChild(splitBtnRight);
-
-
-
-
-
-
-                    // newCanvas.appendChild(selectionLayer);
-                },
-                false);
-
-
-            metaphorBtn.addEventListener("click", () => {
-                    // console.log(currentDom);
                     canvas = document.getElementById('canvas');
+                    audio.muted = true;
                     canvas.remove();
                     modeBtn.remove();
-                    // navSection.style.color = '#fff';
+                    audioBtn.remove();
+                    for (var i = 0; i < 4; i++) {
+                        navSection[i].style.background = '#F5F2F5';
+                        navSection[i].style.color = '#333';
+                    }
                     var newCanvas = document.createElement('div');
                     newCanvas.setAttribute('id', 'canvas');
-                    // newCanvas.innerHTML = 'something static';
+
+
                     var headlineMetaphor = document.createElement('h1');
                     headlineMetaphor.setAttribute('class', 'title fade-in');
                     headlineMetaphor.setAttribute('id', 'title');
-                    headlineMetaphor.textContent = "Meta/phor";
+                    headlineMetaphor.textContent = "Meta/phor ";
                     newCanvas.appendChild(headlineMetaphor);
-                    diagram.style.display = 'block';
-
 
                     var metaphorContent = document.createElement('div');
                     metaphorContent.setAttribute('id', 'metaphorContent');
-                    metaphorContent.setAttribute('class', 'metaphorContent stop-scrolling fade-in');
+                    metaphorContent.setAttribute('class', 'metaphorContent fade-in');
                     metaphorContent.appendChild(diagram);
                     newCanvas.appendChild(metaphorContent);
 
@@ -344,9 +605,7 @@
                     metaphorParagraph.innerHTML = "<h2>METAPHORS</h2><p>At school, we’ve all learned about metaphors as a linguistic play of words or a way to add to the quality of an essay. But, we’re never taught about the influence language, particularly metaphors, have on the way we shape reality. They are more than an addition to “normal” language, they are the base of our language and therefore of how we communicate, think and view the world. Cognitive scientists Lakoff and Johnson decided to separate reality into concrete concepts; physical entities, properties, and activities and abstract concepts; what is not visible; emotions, purposes & ideas. The metaphors we use to comprehend abstract concepts take root in what we experience with our bodies in the physical world. Metaphors therefore operate at the intersection of concrete and abstract, using the former to explain the latter. <br>These metaphors are so intertwined with our vision of the world that we even forget we speak in metaphorical ways. Love, for example, is a very complex yet abstract human concept. Consequently, to talk about relationships, we’ll often use the idea of travel which our bodies can physically witness.</p>";
                     metaphorContent.appendChild(metaphorParagraph);
 
-                    // newCanvas.appendChild(metaphorContent);
                     body.appendChild(newCanvas);
-                    title.style.display = 'flex';
                     var figureContainer = document.createElement('div');
 
 
@@ -356,53 +615,53 @@
                     var figure1 = document.createElement('div');
                     figure1.setAttribute('class', 'figure1 metaphorFigures');
                     figure1.setAttribute('id', 'figure1');
-                    var metaphorImg1 = document.createElement('object');
-                    metaphorImg1.setAttribute('data', './assets/img/svg/dead_end.svg');
+                    var metaphorImg1 = document.createElement('img');
+                    metaphorImg1.setAttribute('src', './assets/img/svg/dead_end.svg');
                     figure1.appendChild(metaphorImg1);
                     var caption1 = document.createElement('figcaption');
-                    caption1.innerHTML = "<h3>example 1 :</h3><p>Our Relationship hit<br>dead-end street.</p>";
+                    caption1.innerHTML = "<p>I think our relationship<br>hit a dead-end.</p>";
 
                     figure1.appendChild(caption1);
                     figureContainer.appendChild(figure1);
-                    // splitLayerLeft.setAttribute('src', './assets/img/cloud.png');
 
                     var figure2 = document.createElement('div');
                     figure2.setAttribute('class', 'figure2 metaphorFigures');
                     figure2.setAttribute('id', 'figure2');
-                    var metaphorImg2 = document.createElement('object');
-                    metaphorImg2.setAttribute('data', './assets/img/svg/different_directions.svg');
+                    var metaphorImg2 = document.createElement('img');
+                    metaphorImg2.setAttribute('src', './assets/img/svg/different_directions.svg');
                     figure2.appendChild(metaphorImg2);
                     var caption2 = document.createElement('figcaption')
-                    caption2.innerHTML = "<h3>example 2 :</h3><p>We are going in different<br>directions.</p>";
+                    caption2.innerHTML = "<p>It's not you it's me, <br>we're going in different <br>directions.</p>";
                     figure2.appendChild(caption2);
                     figureContainer.appendChild(figure2);
 
-                    // splitLayerRight.setAttribute('src', './assets/img/cookie.png');
 
                     var figure3 = document.createElement('div');
                     figure3.setAttribute('class', 'figure3 metaphorFigures');
                     figure3.setAttribute('id', 'figure3');
-                    var metaphorImg3 = document.createElement('object');
-                    metaphorImg3.setAttribute('data', './assets/img/svg/going_nowhere.svg');
+                    var metaphorImg3 = document.createElement('img');
+                    metaphorImg3.setAttribute('src', './assets/img/svg/going_nowhere.svg');
                     figure3.appendChild(metaphorImg3);
                     var caption3 = document.createElement('figcaption');
-                    caption3.innerHTML = "<h3>example 3 :</h3><p>We are getting nowhere in<br>this relationship.</p>";
+                    caption3.innerHTML = "<p>We are getting nowhere in<br>this relationship!</p>";
                     figure3.appendChild(caption3);
                     figureContainer.appendChild(figure3);
 
 
                     var figureContainer2 = document.createElement('div');
                     figureContainer2.setAttribute('class', 'figureContainer2');
-                    figureContainer2.setAttribute('id', 'impactOfMetaphorSection');
+                    figureContainer2.setAttribute('id', 'metaphorSection');
                     metaphorContent.appendChild(figureContainer2);
 
-                    // figureContainer2.innerHTML = "<h2>Impact Of Metaphor</h2>";
-
+                    var impactOfMetaphors = document.createElement('h1');
+                    impactOfMetaphors.setAttribute('class', 'impactOfMetaphorsHeader');
+                    impactOfMetaphors.textContent = 'The impact of METAPHORS';
+                    figureContainer2.appendChild(impactOfMetaphors);
                     var figure4 = document.createElement('div');
                     figure4.setAttribute('class', 'figure4 metaphorFigures');
                     figure4.setAttribute('id', 'figure4');
-                    var metaphorImg4 = document.createElement('object');
-                    metaphorImg4.setAttribute('data', './assets/img/svg/sphere.svg');
+                    var metaphorImg4 = document.createElement('img');
+                    metaphorImg4.setAttribute('src', './assets/img/svg/sphere.svg');
                     var caption4_2 = document.createElement('figcaption');
                     caption4_2.setAttribute('class', 'title_above');
                     caption4_2.innerHTML = "<h3>Real Life:<br>Target domain</h3>";
@@ -412,6 +671,9 @@
                     figure4.appendChild(metaphorImg4);
                     figure4.appendChild(caption4);
                     figureContainer2.appendChild(figure4);
+                    var figure4_line = document.createElement('hr');
+                    figure4_line.setAttribute('class', 'line');
+                    figureContainer2.appendChild(figure4_line);
 
 
                     var hl1 = document.createElement('div');
@@ -420,8 +682,8 @@
                     var figure5 = document.createElement('div');
                     figure5.setAttribute('class', 'figure5 metaphorFigures');
                     figure5.setAttribute('id', 'figure5');
-                    var metaphorImg5 = document.createElement('object');
-                    metaphorImg5.setAttribute('data', './assets/img/svg/circle.svg');
+                    var metaphorImg5 = document.createElement('img');
+                    metaphorImg5.setAttribute('src', './assets/img/svg/circle.svg');
                     var caption5_2 = document.createElement('figcaption');
                     caption5_2.setAttribute('class', 'title_above');
                     caption5_2.innerHTML = "<h3>Metaphor:<br>Source domain</h3>";
@@ -431,6 +693,11 @@
                     figure5.appendChild(metaphorImg5);
                     figure5.appendChild(caption5);
                     figureContainer2.appendChild(figure5);
+                    var figure5_line = document.createElement('hr');
+                    figure5_line.setAttribute('class', 'line');
+                    figureContainer2.appendChild(figure5_line);
+
+
 
                     var hl2 = document.createElement('div');
                     hl2.setAttribute('class', 'hl2');
@@ -438,10 +705,10 @@
                     var figure6 = document.createElement('div');
                     figure6.setAttribute('class', 'figure6 metaphorFigures');
                     figure6.setAttribute('id', 'figure6');
-                    var metaphorImg6 = document.createElement('object');
-                    metaphorImg6.setAttribute('data', './assets/img/svg/distorsion.svg');
+                    var metaphorImg6 = document.createElement('img');
+                    metaphorImg6.setAttribute('src', './assets/img/svg/distorsion.svg');
                     var caption6_2 = document.createElement('figcaption');
-                    caption6_2.innerHTML = "<h3>Distortion</h3>";
+                    caption6_2.innerHTML = "<h3><br>Distortion<br></h3>";
                     caption6_2.setAttribute('class', 'title_above');
                     var caption6 = document.createElement('figcaption');
                     caption6.innerHTML = "<p>Comparing <b>love</b> to a<br><b>joirney</b> unconsciously<br>shapes the way we think<br>act about the concept<br>and keeps us confined in<br>a specific perspective.</p>";
@@ -451,6 +718,85 @@
                     figureContainer2.appendChild(figure6);
 
 
+                    var metaphorContent2 = document.createElement('div');
+                    metaphorContent2.setAttribute('class', 'metaphorParagraph2');
+                    metaphorContent2.setAttribute('id', 'impactOfMetaphorSection');
+                    figureContainer2.appendChild(metaphorContent2);
+                    metaphorContent2.innerHTML = "<h2>METAPHORS illuminate</h2><p>In the case of love as a journey, the metaphor is a simple powerful tool to express<br>complex topics and emotions. It helps the speaker and listener have a cleaner<br>communication through an experience they can both physically comprehend. Metaphors<br>therefore shine new light on abstract conncepts through their specific perspective on the<br>subject. </p>";
+
+
+
+                    var metaphorContent3 = document.createElement('div');
+                    metaphorContent3.setAttribute('class', 'metaphorParagraph3');
+                    metaphorContent3.setAttribute('id', 'metaphorsObfuscate');
+                    figureContainer2.appendChild(metaphorContent3);
+                    metaphorContent3.innerHTML = "<h2>METAPHORS obfuscates</h2><p>Similar to the sunlight never reaching the far side of the moon, how much do metaphors keep important aspects in the shadow? Perfect for quick comprehension, metaphors tend to highlight and emphasize one aspect of the phenomenon over another. Yes, Love is a journey but is that all there is to it? The love/journey metaphor keeps us encased in that specific physical experience and hides any other perspectives. From another angle, how could love be described?</p>";
+
+
+                    var metaphorContent4 = document.createElement('div');
+                    metaphorContent4.setAttribute('class', 'metaphorParagraph4');
+                    metaphorContent4.setAttribute('id', 'andInTheDigitalWorld');
+                    metaphorContent4.innerHTML = "<h2>And in the digital world?</h2><p>Technology exists in concrete material ways, we can touch it, experience it and know how to use it. But if I were to ask you how exactly you manage to read this text on your screen, how detailed would your explanation be ? The complexity of technological concepts needing to be defined and named, naturally pushed for the use of metaphors. Therefore, the digital world heavily relies on those metaphors. You’re probably reading this on a browser window, scrolling with a mouse, trying to avoid viruses while surfing the web. (don’t hesitate to bookmark this page, by the way!)<br><br>With the network being a metaphor nest, one might wonder, which aspects of these concepts are being distorted or obfuscated ? Planet Meta was born out of this question. </p>";
+                    metaphorContent.appendChild(metaphorContent4);
+
+
+                    var metaphorContent5 = document.createElement('div');
+                    metaphorContent5.setAttribute('class', 'metaphorParagraph5');
+                    metaphorContent5.innerHTML = "<p>On planet meta, the user can dive into metaphors on three layers of the digital world: </p>"
+                    metaphorContent.appendChild(bigDiagramRow);
+                    metaphorContent.appendChild(metaphorContent5);
+
+
+
+                    var figureContainer3 = document.createElement('div');
+                    figureContainer3.setAttribute('class', 'figureContainer3');
+                    figureContainer3.setAttribute('id', 'metaphorSection');
+                    metaphorContent.appendChild(figureContainer3);
+
+                    var figure7 = document.createElement('div');
+                    figure7.setAttribute('class', 'figure7 metaphorFigures');
+                    figure7.setAttribute('id', 'figure7');
+                    var metaphorImg7 = document.createElement('img');
+                    metaphorImg7.setAttribute('src', './assets/img/svg/cookie.svg');
+                    var caption7_2 = document.createElement('figcaption');
+                    caption7_2.setAttribute('class', 'title_above');
+                    caption7_2.innerHTML = "<h3>Cookies</h3>";
+                    var caption7 = document.createElement('figcaption');
+                    caption7.innerHTML = "<p>Immediate contact with user: data collection</p>";
+                    figure7.appendChild(caption7_2);
+                    figure7.appendChild(metaphorImg7);
+                    figure7.appendChild(caption7);
+                    figureContainer3.appendChild(figure7);
+
+                    var figure8 = document.createElement('div');
+                    figure8.setAttribute('class', 'figure8 metaphorFigures');
+                    figure8.setAttribute('id', 'figure8');
+                    var metaphorImg8 = document.createElement('img');
+                    metaphorImg8.setAttribute('src', './assets/img/svg/cloud.svg');
+                    var caption8_2 = document.createElement('figcaption');
+                    caption8_2.setAttribute('class', 'title_above');
+                    caption8_2.innerHTML = "<h3>Cloud</h3>";
+                    var caption8 = document.createElement('figcaption')
+                    caption8.innerHTML = "<p>Megastructure invisible to user: data storage</p>";
+                    figure8.appendChild(caption8_2);
+                    figure8.appendChild(metaphorImg8);
+                    figure8.appendChild(caption8);
+                    figureContainer3.appendChild(figure8);
+
+                    var figure9 = document.createElement('div');
+                    figure9.setAttribute('class', 'figure9 metaphorFigures');
+                    figure9.setAttribute('id', 'figure9');
+                    var metaphorImg9 = document.createElement('img');
+                    metaphorImg9.setAttribute('src', './assets/img/svg/ai.svg');
+                    var caption9_2 = document.createElement('figcaption');
+                    caption9_2.innerHTML = "<h3>AI</h3>";
+                    caption9_2.setAttribute('class', 'title_above');
+                    var caption9 = document.createElement('figcaption');
+                    caption9.innerHTML = "<p>underlying & englobing system: data processing</p>";
+                    figure9.appendChild(caption9_2);
+                    figure9.appendChild(metaphorImg9);
+                    figure9.appendChild(caption9);
+                    figureContainer3.appendChild(figure9);
 
                     // let sectionTwo = document.querySelector('#section-2');
                     var circle1 = document.querySelector('.diagram .circle1');
@@ -460,193 +806,710 @@
                     var abstractConcepts = document.querySelector('.toopTips .abstractConcepts');
                     var concreteConcepts = document.querySelector('.toopTips .concreteConcepts');
 
-                    var scrollTop = document.documentElement.scrollTop;
+                    // var scrollTop = document.documentElement.scrollTop;
 
                     var opacity = 1.0;
                     var defaultPos = 43.5;
 
 
-                    window.addEventListener('scroll', function() {
-                        let scroll = window.pageYOffset;
-                        console.log(scroll);
-                        if (scroll > 100) {
-                            // // metaphorContent.style.height = "00%";
-                            // // metaphorContent.style.position = "absolute";
-                            // opacity = 1.0 - (scroll / 200);
-                            // toolTips.style.opacity = opacity;
-                            // // console.log(opacity);
+                    ScrollTrigger.matchMedia({
+
+                        // desktop
+                        "(min-width: 843px)": function() {
+                            function section1() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".diagram",
+                                        start: "center center",
+                                        end: '+=50%',
+                                        id: '_diagram',
+                                        scrub: 0.5,
+                                        pin: true
+                                    }
+                                });
+                                tl.to(".circle1", {
+                                        xPercent: -200
+                                    }, 0)
+                                    .to(".circle2", {
+                                        xPercent: 200
+                                    }, 0)
+                                    .to(".abstractConcepts", {
+                                        xPercent: -200
+                                    }, 0)
+                                    .to(".concreteConcepts", {
+                                        xPercent: 200
+                                    }, 0)
+                                    .to(".vl", {
+                                        yPercent: 200,
+                                        opacity: 0,
+                                        duration: 0.5
+                                    }, 0)
+                                    .to(".metaphor", {
+                                        yPercent: 300,
+                                        opacity: 0
+                                    }, 0);
+
+                                return tl;
+                            }
+
+
+                            function section2() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".metaphorParagraph",
+                                        start: 'center',
+                                        end: '+=40%',
+                                        // markers: true,
+                                        scrub: 0.8,
+
+                                    }
+                                });
+
+                                tl.to(".metaphorParagraph", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure1", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure2", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure3", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".impactOfMetaphorsHeader", {
+                                        yPercent: -640,
+                                        opacity: 1,
+                                        duration: 1
+                                    }, "<")
+
+
+                                return tl;
+                            }
+
+
+
+                            function section3() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2",
+                                        start: '300 center',
+                                        // end: ' ',
+                                        end: '+=270%',
+                                        // markers: true,
+                                        id: '_figureContainer2',
+                                        scrub: true,
+                                        // paused: true,
+                                        pin: true
+                                    }
+                                });
+
+                                tl.to(".figure4 ", {
+                                        alpha: 0,
+                                        duration: 2
+                                    }, 0)
+                                    .to(".figure6 ", {
+                                        alpha: 0,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".figure5 p", {
+                                        alpha: 0,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".figure5 h3", {
+                                        alpha: 0,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".figureContainer2 hr", {
+                                        alpha: 0,
+                                        duration: 0.4
+                                    }, "<")
+                                    .to(".figure5", {
+                                        scale: 0.8,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".figure5", {
+                                        xPercent: -120,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".metaphorParagraph2", {
+                                        yPercent: -100,
+                                        opacity: 1,
+                                        duration: 2
+                                    }, "<")
+                                    .to(".impactOfMetaphorsHeader", {
+                                        opacity: 0,
+                                        duration: 2
+                                    }, "<")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/2.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=8")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/3.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=8")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/4.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/5.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/6.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/7.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/8.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/9.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .to(".metaphorParagraph2", {
+                                        yPercent: 170,
+                                        opacity: 0,
+                                        duration: 2
+                                    }, "-=17")
+                                    .to(".figure5", {
+                                        xPercent: 120,
+                                        duration: 18
+                                    }, "<")
+                                    .to("#metaphorsObfuscate", {
+                                        opacity: 1,
+                                        duration: 4
+                                            // float: 'left'
+                                    }, "+=17")
+                                    .to({}, {
+                                        duration: 3
+                                    }) // empty tween
+
+                                return tl;
+                            }
+
+                            function section4() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".metaphorParagraph4",
+                                        start: 'top center',
+                                        // end: ' ',
+                                        end: '+=30%',
+                                        // markers: true,
+                                        // id: '_figureContainer2',
+                                        scrub: 0.4,
+                                        pin: true,
+                                    }
+                                });
+                                tl.to(".metaphorParagraph4 h2", {
+                                        opacity: 1,
+                                        yPercent: -30,
+                                        duration: 6
+                                    }, 0)
+                                    .to(".metaphorParagraph4 p", {
+                                        opacity: 1,
+                                        duration: 4
+                                    }, "+=6")
+                                    .from(".bigDiagramRow", {
+                                        opacity: 0,
+                                        yPercent: 80,
+                                        duration: 6
+                                    }, "<")
+                                    .from(".metaphorParagraph5", {
+                                        opacity: 1,
+                                        yPercent: 1600,
+                                        duration: 12
+                                    }, "+=8")
+                                    .from(".figureContainer3", {
+                                        opacity: 1,
+                                        yPercent: 10,
+                                        duration: 2,
+                                        stagger: 0.8
+                                    }, 0)
+
+
+
+                                return tl;
+                            }
+
+
+
+                            // create a sequence that moves 3 of the panels in from different directions 
+                            const tl = gsap.timeline();
+                            tl.add(section1())
+                                .add(section2())
+                                .add(section3())
+                                .add(section4())
+
+
+                            // pin the container and link the animation to the scrollbar (scrub: true). We could easily embed this in the gsap.timeline() to shorten things a bit, but this is to show that you can create the ScrollTrigger separately if you prefer. 
+                            ScrollTrigger.create({
+                                animation: tl,
+                                trigger: ".canvas",
+                                start: "center center",
+                                end: " ",
+                                scrub: true,
+                                pin: true,
+                                anticipatePin: 1
+                            });
+
+
+                        },
+
+                        // mobile
+                        "(max-width: 844px)": function() {
+                            // Any ScrollTriggers created inside these functions are segregated and get
+                            // reverted/killed when the media query doesn't match anymore. 
+                            function section1() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".diagram",
+                                        start: "center center",
+                                        end: '+=20%',
+                                        // markers: true,
+                                        id: '_diagram',
+                                        scrub: 0.5,
+                                        pin: true
+                                    }
+                                });
+                                tl.to(".circle1", {
+                                        xPercent: -200
+                                    }, 0)
+                                    .to(".circle2", {
+                                        xPercent: 200
+                                    }, 0)
+                                    .to(".abstractConcepts", {
+                                        xPercent: -200
+                                    }, 0)
+                                    .to(".concreteConcepts", {
+                                        xPercent: 200
+                                    }, 0)
+                                    .to(".vl", {
+                                        yPercent: 200,
+                                        opacity: 0,
+                                        duration: 0.5
+                                    }, 0)
+                                    .to(".metaphor", {
+                                        yPercent: 300,
+                                        opacity: 0
+                                    }, 0);
+
+                                return tl;
+                            }
+
+
+                            function section2() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer",
+                                        start: 'top -40',
+                                        end: 'bottom',
+                                        id: 'section2',
+                                        scrub: 0.8,
+                                        pin: true
+
+                                    }
+                                });
+
+                                tl.to(".metaphorParagraph", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure1", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure2", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".figureContainer .figure3", {
+                                        opacity: 0,
+                                    }, 0)
+                                    .to(".impactOfMetaphorsHeader", {
+                                        // yPercent: -640,
+                                        opacity: 1,
+                                        duration: 4
+                                    }, 0)
+
+                                return tl;
+                            }
+
+
+
+                            function section3_figure4() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2 .figure4",
+                                        start: 'top 200',
+                                        end: '+=100%',
+                                        id: '_figureContainer2',
+                                        scrub: true,
+                                        pin: true
+                                    }
+                                });
+                                tl.to(".figure4", {
+                                    alpha: 0,
+                                    duration: 4
+                                }, 0);
+
+
+
+                                return tl;
+                            }
+
+                            function section3_figure5() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2 .figure5",
+                                        start: 'top 200',
+                                        end: '+=100%',
+                                        id: '_figureContainer2',
+                                        scrub: true,
+                                        pin: true
+                                    }
+                                });
+                                tl.to(".figure5", {
+                                    alpha: 0,
+                                    duration: 4
+                                }, 0)
+
+                                return tl;
+                            }
+
+                            function section3_figure6() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2 .figure6",
+                                        start: 'top 200',
+                                        end: '+=100%',
+                                        id: '_figureContainer2',
+                                        scrub: true,
+                                        pin: true
+                                    }
+                                });
+
+                                tl.to(".figure6", {
+                                    alpha: 0,
+                                    duration: 4
+
+                                }, 0)
+                                return tl;
+                            }
+
+
+                            function section3() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2 .figure6",
+                                        start: 'top top',
+                                        end: 'bottom top',
+                                        id: '_figr2',
+                                        scrub: true,
+                                        pin: true
+
+                                    }
+                                });
+                                tl.to(".figureContainer2 .metaphorFigures", {
+                                        yPercent: 170,
+                                        duration: 8
+                                    })
+                                    .to(".figureContainer2 .figure5", {
+                                        opacity: 1
+                                    })
+                                    // .to(".metaphorParagraph2", {
+                                    //     opacity: 0,
+                                    //     duration: 2
+                                    // }, "<")
+
+
+                                return tl;
+                            }
+
+                            // function section3_1() {
+                            //     const tl = gsap.timeline({
+                            //         scrollTrigger: {
+                            //             trigger: ".metaphorParagraph2",
+                            //             start: '560',
+                            //             end: 'bottom',
+                            //             id: '_figr2',
+                            //             scrub: true,
+                            //             markers: true,
+                            //             pin: true
+
+                            //         }
+                            //     });
+                            //     tl.to(".metaphorParagraph2", {
+                            //             yPercent: -180,
+                            //             opacity: 1,
+                            //             duration: 4
+                            //         })
+                            //         .to({}, {
+                            //             duration: 8
+                            //         }) // empty tween
+
+
+                            // .to(".metaphorParagraph2", {
+                            //     opacity: 0,
+                            //     duration: 2
+                            // }, "<")
+
+
+                            //     return tl;
+                            // }
+
+                            function section3_2() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".figureContainer2 .figure5",
+                                        start: 'center',
+                                        end: '+=300%',
+                                        id: '_figr2',
+                                        scrub: true,
+                                        pin: true
+
+                                    }
+                                });
+                                tl.to(".figure5 p", {
+                                        alpha: 0,
+                                        duration: 4
+                                    }, "+=20")
+                                    .to(".figure5 h3", {
+                                        alpha: 0,
+                                        duration: 4
+                                    }, "<")
+                                    .to(".figure5", {
+                                        scale: 0.8,
+                                        duration: 1
+                                    }, "<")
+
+                                .to(".impactOfMetaphorsHeader", {
+                                        opacity: 0,
+                                        duration: 1
+                                    }, "<")
+                                    .to(".metaphorParagraph2", {
+                                        opacity: 1,
+                                        duration: 2
+                                    }, "<")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/2.svg',
+                                            duration: 3
+                                        }
+                                    }, "+=8")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/3.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "<")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/4.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/5.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/6.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/7.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/8.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .set(".figure5 img", {
+                                        attr: {
+                                            src: './assets/img/svg/svg_anim/9.svg',
+                                            duration: 1.5
+                                        }
+                                    }, "+=1.5")
+                                    .to(".metaphorParagraph2", {
+                                        opacity: 0,
+                                        duration: 2
+                                    }, "<")
+                                    .to("#metaphorsObfuscate", {
+                                        opacity: 1,
+                                        duration: 4
+                                            // float: 'left'
+                                    }, "<")
+                                    .to({}, {
+                                        duration: 8
+                                    }) // empty tween
+                            }
+
+
+
+
+
+
+
+
+                            function section4() {
+                                const tl = gsap.timeline({
+                                    scrollTrigger: {
+                                        trigger: ".metaphorParagraph4",
+                                        start: 'top',
+                                        // end: ' ',
+                                        end: '+=180%',
+                                        // markers: true,
+                                        // id: '_figureContainer2',
+                                        scrub: 0.4,
+                                        pin: true,
+                                    }
+                                });
+                                tl.to(".metaphorParagraph4 h2", {
+                                        opacity: 1,
+                                        yPercent: -30,
+                                        duration: 6
+                                    }, 0)
+                                    .to(".metaphorParagraph4 p", {
+                                        opacity: 1,
+                                        duration: 4
+                                    }, "+=3")
+                                    .from(".bigDiagramRow", {
+                                        opacity: 0,
+                                        yPercent: 1600,
+                                        duration: 3
+                                    }, "<")
+                                    .from(".metaphorParagraph5", {
+                                        opacity: 1,
+                                        yPercent: 1600,
+                                        duration: 12
+                                    }, "+=12")
+                                    .from(".figureContainer3", {
+                                        opacity: 1,
+                                        yPercent: 10,
+                                        duration: 2,
+                                        stagger: 0.8
+                                    }, 0)
+
+                                return tl;
+                            }
+
+
+                            // create a sequence that moves 3 of the panels in from different directions 
+                            const tl = gsap.timeline();
+                            tl.add(section1())
+                                .add(section2())
+                                .add(section3_figure4())
+                                .add(section3_figure5())
+                                .add(section3_figure6())
+                                .add(section3())
+                                .add(section3_2())
+
+                            ScrollTrigger.create({
+                                animation: tl,
+                                trigger: ".canvas",
+                                start: "center center",
+                                end: " ",
+                                scrub: true,
+                                pin: true,
+                                anticipatePin: 1
+                            });
+
+                        },
+
+                        // all 
+                        "all": function() {
 
                         }
-
-
-                        // toolTips.style.oppacity = 0;
-
-
-                        if (scroll < 300) {
-                            circle1.style.right = defaultPos + (scroll / 3) + "%";
-                            console.log(circle1.style.right);
-                            circle2.style.left = defaultPos + (scroll / 3) + "%";
-                            console.log(circle2.style.left);
-                            // metaphorContent.classList.remove("stop-scrolling");
-                            metaphorContent.style.overflowY = "scroll";
-                            opacity = 1.0 - (scroll / 110);
-                            toolTips.style.opacity = opacity;
-                        } else if (scroll < 600) {
-                            document.querySelector(".metaphorParagraph h2").classList.add("fade-in");
-                            document.querySelector(".metaphorParagraph h2").style.display = "block";
-                        } else if (scroll < 700) {
-                            document.querySelector(".figureContainer").classList.add("fade-in");
-                        }
-
 
                     });
 
 
 
+                });
+
+                aboutBtn.addEventListener("click", () => {
+
+                        canvas = document.getElementById('canvas');
+                        audio.muted = true;
+                        returnBtn.style.display = 'none';
+                        canvas.remove();
+                        modeBtn.remove();
+                        audioBtn.remove();
+
+                        navBar.style.background = '#F5F2F5';
+                        for (var i = 0; i < 3; i++) {
+                            hiddenNavItems[i].style.display = 'none';
+                        }
+                        for (var i = 0; i < 4; i++) {
+                            navSection[i].style.background = '#F5F2F5';
+                            navSection[i].style.color = '#333';
+                        }
+                        // navSection.style.color = '#fff';
+
+                        var newCanvas = document.createElement('div');
+                        newCanvas.setAttribute('id', 'canvas');
+                        // newCanvas.innerHTML = 'something static';
+                        var aboutContainer = document.createElement('div');
+                        aboutContainer.setAttribute('class', 'aboutContainer');
+                        aboutContainer.setAttribute('id', 'aboutContainer');
 
 
-                    // metaphorContent.addEventListener('scroll', function() {
-                    //     let scroll = metaphorContent.scrollY;
-                    //     // console.log("ss");
-                    //     if (scroll)
-                    //         if (scroll > 0) {
-                    //             console.log(scroll);
+                        var headlineAbout = document.createElement('h1');
+                        headlineAbout.setAttribute('class', 'title fade-in');
+                        title.style.display = 'flex';
+                        headlineAbout.setAttribute('id', 'title');
+                        headlineAbout.textContent = "About";
+                        aboutContainer.appendChild(headlineAbout);
 
-                    //             circle1.style.left += 0.05;
-                    //             circle2.style.left -= 0.05;
-                    //         } else {
+                        var aboutParagraph = document.createElement('div');
+                        aboutParagraph.setAttribute('id', 'aboutParagraph');
+                        aboutParagraph.setAttribute('class', 'aboutParagraph fade-in');
+                        aboutParagraph.innerHTML = "<h3>Welcome to project Planet Meta/</h3><p>Our mission is to ensure the correct transmission of information between our human universe and the meta/ universe, consisting of three planets. After years of observation by us, humans, these planets and inhabitants have become an integral part of the collective intergalactic knowledge. From the ethereal and floating clouds of planet CLOUD to planet AI’s obscure light which the whole system revolves around, scientists have built rich theories and interpretations.  Up until recently, this knowledge seemed to make sense to the human species. The transmission tools used to observe and decipher the planets meta/ managed to turn the received information into understandable concepts for all. Humans felt a sense of control and understanding of this far away galaxy.Gradually, we started to notice signs of glitching in the transmission, altering the harmony between the information sent by meta/ and the information we received. Project Planet Meta/ delved into this glitch and realized that the tools we had been using to decrypt these planets had been distorting the information. Whilst we kept on viewing these planets the same, the glitch revealed that, behind this faulty simulation we had been receiving, lied a different truth. Using this glitch as an entrance into the real face of the meta galaxy, we finally saw xxx, xxx and xxx under a new light.</p><h3>When avatars go to sleep, where do they go?</h3><p>Project planet meta decided to call this newly found version, the night version as it seems like this perspective on the meta galaxy had been kept in the dark before the occurrence of the Glitch. Ultimately the night version shows us what the avatars of the digital world look like when they’re not busy pretending to be something they are not, when the mask of the simulacra falls down. Will the newly discovered night version of Planet meta end up enlightening us?</p>";
+                        aboutContainer.appendChild(aboutParagraph);
 
+                        var credit = document.createElement('div');
+                        credit.setAttribute('id', 'credit');
+                        credit.setAttribute('class', 'credit fade-in');
+                        credit.innerHTML = "<p>A project by Luna Gooriah</p><br><h3>Creative Direction</h3><p>Luna Gooriah</p><br><h3>Interaction Design<br><br>/Web Development</h3><p>Yoshitsugu Kosaka</p><br><h3>3D Design</h3><p>Sanem Ozman</p><p>Sarah Ejiyone</p><p>Paulina Bosz</p>";
+                        aboutContainer.appendChild(credit);
 
-                    //         }
-                    // });
+                        newCanvas.appendChild(aboutContainer);
+                        body.appendChild(newCanvas);
+                        title.style.display = 'flex';
 
-
-
-                    // let scrolling = false;
-                    // var s = canvas.scrollTop(),
-                    //     d = document.height(),
-                    //     c = canvas.height();
-                    // var scrollPercent = (s / (d - c));
-                    // // const content = document.getElementById("content");
-                    // metaphorContent.addEventListener("scroll", (e) => {
-                    //     // scrolling = true;
-
-                    //     var scrollPercent = (s / (d - c));
-                    //     console.log(getScrollPercent);
-                    // });
+                    },
+                    false);
+            </script>
 
 
-
-
-                    // var position = canvas.offsetTop;
-                    // var scrolled = document.scrollingElement.scrollTop;
-                    // metaphorContent.addEventListener("scroll", (e) => {
-                    //     var position = canvas.offsetTop;
-                    //     var scrolled = document.scrollingElement.scrollTop;
-                    //     //     if (scrolled > position + 100) {
-                    //     //         content.classList.add(
-                    //     //             'curtain-in');
-                    //     //     }
-                    //     // });
-                    //     // console.log(scrollPercent);
-
-
-                    //     canvas.scroll(function() {
-                    //         var s = canvas.scrollTop(),
-                    //             d = document.height(),
-                    //             c = canvas.height();
-
-                    //         var scrollPercent = (s / (d - c));
-                    //         console.log(scrollPercent);
-
-
-
-
-                    // circle1.css({
-                    //     'right': position
-                    // });
-
-                    // circle2.css({
-                    //     'left': position
-                    // });
-
-                    // if (s > 400) {
-                    //     $heart.css({
-                    //         'OPACITY': '1'
-                    //     })
-
-                    // }
-                    // if (s < 400) {
-                    //     $heart.css({
-                    //         'opacity': '1'
-                    //     })
-                    // }
-                    // });
-                    // });
-
-
-                    // splitLayerCenter.setAttribute('src', './assets/img/ai.png');
-                },
-                false);
-
-
-
-            aboutBtn.addEventListener("click", () => {
-                    // console.log(currentDom);
-                    canvas = document.getElementById('canvas');
-                    canvas.remove();
-                    modeBtn.remove();
-                    // navSection.style.color = '#fff';
-
-                    var newCanvas = document.createElement('div');
-                    newCanvas.setAttribute('id', 'canvas');
-                    // newCanvas.innerHTML = 'something static';
-
-                    var headlineAbout = document.createElement('h1');
-                    headlineAbout.setAttribute('class', 'title fade-in');
-                    headlineAbout.setAttribute('id', 'title');
-                    headlineAbout.textContent = "About";
-                    newCanvas.appendChild(headlineAbout);
-
-                    var aboutParagraph = document.createElement('div');
-                    aboutParagraph.setAttribute('id', 'aboutParagraph');
-                    aboutParagraph.setAttribute('class', 'aboutParagraph fade-in');
-                    aboutParagraph.innerHTML = "<h3>Welcome to project Planet Meta/</h3><p>Our mission is to ensure the correct transmission of information between our human universe and the meta/ universe.The three known planets of this system are xxx, xxx and xxx. After years of observation by us, humans, these planets and inhabitants have become an integral part of the collective intergalactic knowledge. From the ethereal and floating clouds of planet XXX to planet AI’s obscure light which the whole system revolves around, scientists have built rich theories and interpretations. Up until recently, this knowledge seemed to make sense to the human species. The transmission tools used to observe and decipher the planets meta/ managed to turn the received information into understandable concepts for all. Humans felt a sense of control and understanding of this far away galaxy.Gradually, we started to notice signs of glitching in the transmission, altering the harmony between the information sent by meta/ and the information we received. Project Planet Meta/ delved into this glitch and realized that the tools we had been using to decrypt these planets had been distorting the information. Whilst we kept on viewing these planets the same, the glitch revealed that, behind this faulty simulation we had been receiving, lied a different truth. Using this glitch as an entrance into the real face of the meta galaxy, we finally saw xxx, xxx and xxx under a new light.</p><h3>When avatars go to sleep, where do they go?</h3><p>Project planet meta decided to call this newly found version, the night version as it seems like this perspective on the meta galaxy had been kept in the dark before the occurrence of the Glitch. Ultimately the night version shows us what the avatars of the digital world look like when they’re not busy pretending to be something they are not, when the mask of the simulacra falls down. Will the newly discovered night version of Planet meta end up enlightening us?</p>";
-                    newCanvas.appendChild(aboutParagraph);
-
-                    var credit = document.createElement('div');
-                    credit.setAttribute('id', 'credit');
-                    credit.setAttribute('class', 'credit fade-in');
-                    credit.innerHTML = "<p>A project by Luna Gooriah</p><br><h3>Creative Direction</h3><p>Luna Gooriah</p><br><h3>UX Design/Web Development</h3><p>Yoshitsugu Kosaka</p><br><h3>3D Design</h3><p>Sanem Ozman</p><p>Sarah Ejiyone</p><p>Paulina Bosz</p>";
-                    newCanvas.appendChild(credit);
-
-                    body.appendChild(newCanvas);
-                    title.style.display = 'flex';
-
-                },
-                false);
-        </script>
-
-
-
-        <!-- <div class="gui"></div> -->
-
-        <!-- <svg id="mustang-logo" data-name="mustang-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.76 192.76">
-      <path
-        d="M132.37,87.91h-17a2.6,2.6,0,0,0-2.61,2.6v10.36h5.89V97.7h10.46v3.17H135V90.51a2.62,2.62,0,0,0-2.61-2.6ZM118,100.26h-4.66V90.51a2,2,0,0,1,2-2h17a2,2,0,0,1,1.41.58,2,2,0,0,1,.58,1.41v9.75h-4.62v-3.2h-11.7v3.21ZM23.43,95.5,17.4,88H9.11v13h5.77V93.3L21.37,101h4.09L32,93.3V101h5.74V88H29.58L23.43,95.5Zm1.75,4.84H21.65l-7.38-8.71v8.71H9.73V88.56H17.1l6.32,7.92,6.45-7.92h7.26v11.78H32.61v-8.7l-7.43,8.7ZM89,91.69H97V101h5.91V91.69h8.21V88H89v3.74Zm13.36,8.65H97.65V91.08H89.59V88.56h20.94v2.52h-8.2v9.26ZM154.53,96l-7.76-8h-8.28v13h5.9v-8l7.84,8h8.19v-13h-5.89v8Zm-10.75-4.54v8.88H139.1V88.52h7.41l8.64,9v-9h4.66V100.3h-7.32l-8.71-8.88ZM57,96.32a.79.79,0,0,1-.77.77H47.3a.73.73,0,0,1-.54-.23.74.74,0,0,1-.23-.54V87.91H40.61V98.26a2.59,2.59,0,0,0,2.57,2.61h17a2.59,2.59,0,0,0,2.61-2.57V87.91H57v8.41Zm.61,0v-7.8h4.63v9.74a2,2,0,0,1-2,2h-17a2,2,0,0,1-2-2V88.52H45.9v7.8a1.37,1.37,0,0,0,1.4,1.4h8.93a1.4,1.4,0,0,0,1-.4,1.44,1.44,0,0,0,.4-1Zm27-3.82h-14a.41.41,0,0,1-.41-.41h0a.4.4,0,0,1,.12-.29.38.38,0,0,1,.29-.12H87V87.9H68.13a2.6,2.6,0,0,0-2.61,2.6v3.16a2.61,2.61,0,0,0,2.61,2.61H81.49a.41.41,0,0,1,.41.41h0a.41.41,0,0,1-.41.41H65.75v3.78H84.61a2.59,2.59,0,0,0,2.61-2.57V95.1a2.59,2.59,0,0,0-2.58-2.6Zm2,5.76a2,2,0,0,1-2,2H66.37V97.7H81.49a1,1,0,0,0,.72-.3,1,1,0,0,0,.3-.73,1,1,0,0,0-1-1H68.13a2,2,0,0,1-1.41-.59,1.92,1.92,0,0,1-.58-1.41V90.51a2,2,0,0,1,.58-1.41,2,2,0,0,1,1.41-.58H86.38v2.53H70.61a1,1,0,0,0,0,2h14a2,2,0,0,1,2,2v3.21Zm43.13-5.8a1.41,1.41,0,0,0-.41-1,1.36,1.36,0,0,0-1-.4h-8.94A1.38,1.38,0,0,0,118,92.44h0v1.67h11.7V92.44Zm-10.32-.77h8.94a.77.77,0,0,1,.76.77v1H118.66v-1A.77.77,0,0,1,119.42,91.69Zm53.5.81v3.55h6.76v.61a.41.41,0,0,1-.41.41h-8.93a1.19,1.19,0,0,1-.86-.36,1.23,1.23,0,0,1-.36-.87V92.9a1.22,1.22,0,0,1,1.22-1.23h14.5V87.89h-19a2.6,2.6,0,0,0-2.61,2.6v7.75a2.63,2.63,0,0,0,.77,1.85,2.58,2.58,0,0,0,1.84.76h16.37a2.59,2.59,0,0,0,2.61-2.57v-5.8Zm9.33,7.76H165.88a2,2,0,0,1-2-2V90.51a2,2,0,0,1,2-2h18.36v2.54H170.35a1.84,1.84,0,0,0-1.84,1.84v2.94a1.84,1.84,0,0,0,1.84,1.84h8.93a1,1,0,0,0,1-1V95.43h-6.74V93.1h10.72v5.15a2,2,0,0,1-2,2Z"
-        transform="translate(-9.11 -87.89)"
-      />
-    </svg>
-    <script>
-        anime({
-            targets: "#mustang-logo path",
-            strokeDashoffset: [anime.setDashoffset, 0],
-            easing: "easeInOutSine",
-            duration: 18000,
-            direction: "alternate",
-            loop: false,
-        }).play;
-    </script> -->
 </body>
 
 </html>
